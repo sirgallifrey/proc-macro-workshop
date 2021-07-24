@@ -45,7 +45,7 @@
 use derive_builder::Builder;
 
 #[derive(Builder)]
-pub struct Command {
+struct Command {
     executable: String,
     args: Vec<String>,
     env: Vec<String>,
