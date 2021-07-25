@@ -2,6 +2,8 @@ use proc_macro::TokenStream;
 use quote::{format_ident, quote};
 use syn::{parse_macro_input, Data, DeriveInput, Field, Fields, Ident, Visibility};
 
+
+
 #[proc_macro_derive(Builder)]
 pub fn derive(input: TokenStream) -> TokenStream {
     let parsed = parse_macro_input!(input as DeriveInput);
@@ -22,7 +24,7 @@ pub fn derive(input: TokenStream) -> TokenStream {
     let expanded = quote! {
         #builder_struct
 
-        #vis impl #ident {
+        impl #ident {
             pub fn builder() -> #builder_struct_ident {
                 #builder_struct_ident {
                     #(#field_nones),*
@@ -68,7 +70,7 @@ fn create_builder_struct(
             #(#new_fields),*
         }
 
-        #vis impl #ident {
+        impl #ident {
             #(#setters)*
         }
     };
